@@ -1,0 +1,90 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.container {
+    width: 800px;
+    /* border: 1px solid; */
+    margin: 0 auto;
+    height: 500px;
+    overflow: hidden;
+}
+
+.text {
+    margin: auto;
+    width: 500px;
+    /* border: 1px solid; */
+    text-align: center;
+}
+
+.text p {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.box {
+    margin-top: 25px;
+    width: 100%;
+    height: 50px;
+    border: 1px solid;
+    border-radius: 30px;
+    position: relative;
+}
+
+.box .select {
+    /* width: 100%; */
+    height: 100%;
+    /* position: relative; */
+    /* margin-left: 0; */
+}
+
+.box .select li {
+    float: left;
+    /* width: 80px; */
+    height: 50px;
+    /* border: 1px solid; */
+    position: relative;
+}
+
+
+.box .select li p {
+    position: absolute;
+    transform: translateX(-50%);
+    top: 5px;
+}
+
+.box .select li::before {
+    content: '';
+    display: block;
+    width: 2px;
+    height: 15px;
+    position: absolute;
+    left: 0;
+    top: 30px;
+    background: #ccc;
+}
+
+.box .mark {
+    width: 4px;
+    height: 100%;
+    background: red;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.button {
+    width: 200px;
+    height: 40px;
+    margin: 50px auto;
+    /* border: 1px solid; */
+    display: flex;
+    justify-content: space-between;
+}
+
+.button button {
+    width: 80px;
+}

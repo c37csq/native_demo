@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    //    function reverse(x){
+    //        var arr = [x];
+    //        arr.split('')
+    //    }
+    // function reverse(x){
+    //     var val = '-3336300';
+    //     var arr = []
+    //     var result = ''
+    //     var res = val.split('').reverse()
+    //     for(var i = 0;i < res.length;i++){
+    //         var item =res[i];
+    //         if(item !== '+' && item !== '-'){
+    //              arr.push(item)
+    //         }
+    //     }
+    //    for(var i = 0;i < arr.length;i ++){
+    //        var content = arr[i];
+    //        result += content
+    //    } 
+    // //    return result
+    // //    callback(result)
+    
+    //     var regex =/^[0]+/
+    //     var str = result.replace(regex,"");
+    //     console.log(str)
+
+
+    
+     function reverse(val,callback){
+        var val = val.toString();
+        var arr = []
+        var result = ''
+        var res = val.split('').reverse()
+        for(var i = 0;i < res.length;i++){
+            var item =res[i];
+            if(item !== '+' && item !== '-'){
+                 arr.push(item)
+            }
+        }
+       for(var i = 0;i < arr.length;i ++){
+           var content = arr[i];
+           result += content
+       }
+       callback(result)
+     } 
+     var result = reverse(+23500,function(result){
+        var regex =/^[0]+/
+        var value = result.replace(regex,"");
+        // console.log(value)  这里能打印出来但是return 是undefined
+        return value;
+    })
+   
+        
+        // var str = result.replace(regex,"");
+        // console.log(str)
+
+    
+   
+    // console.log(reverse(+123000))
+    
+    </script>
+</body>
+</html>

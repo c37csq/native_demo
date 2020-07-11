@@ -1,0 +1,45 @@
+*{
+    margin:0;
+    padding:0;
+    list-style: none;
+}
+.container {
+    position: relative;
+    width:380px;
+    height:400px;
+    margin:100px auto;
+    border:1px solid red;
+    overflow: hidden;
+}
+.container .content {
+    position: absolute;
+    width:365px;
+    left:0;
+    top:0;
+}
+.container .scroll {
+    position: absolute;
+    width:15px;
+    height:100%;
+    border:1px solid #000;
+    box-sizing: border-box;
+    right:0;
+    top:0;
+}
+.container .scroll .duration {
+    position: relative;
+    width:100%;
+    height:363px;
+}
+.container .scroll .icon img {
+    width:15px;
+    height:15px;
+}
+.container .scroll .duration .bar {
+    position: absolute;
+    background: #333;
+    width:15px;
+    left:0;
+    /* height:40px; */
+    cursor: grabbing;
+}

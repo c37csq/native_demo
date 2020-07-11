@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background: #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+  }
+
+  .box {
+    position: relative;
+    width: 50px;
+    height: 50px;
+  }
+
+  .box::before {
+    content: "";
+    position: absolute;
+    width: 48px;
+    height: 8px;
+    background: #000;
+    border-radius: 50%;
+    opacity: 0.2;
+    top: 68px;
+    animation: shadow 0.5s linear infinite;
+  }
+
+  @keyframes shadow {
+    0% {
+      transform: scaleX(1);
+    }
+
+    50% {
+      transform: scaleX(1.2);
+    }
+
+    100% {
+      transform: scaleX(1);
+    }
+  }
+
+  .box::after {
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: #fff;
+    border-radius: 5px;
+    left: 0;
+    top: 0;
+    animation: jump 0.5s linear infinite;
+  }
+
+  @keyframes jump {
+    0% {
+      transform: translateY(0);
+    }
+
+    25% {
+      transform: translateY(10px);
+    }
+
+    50% {
+      transform: translateY(20px) scale(1.1, 0.9);
+    }
+
+    75% {
+      transform: translateY(10px);
+    }
+
+    100% {
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<body>
+  <div class="box">
+
+  </div>
+</body>
+
+</html>

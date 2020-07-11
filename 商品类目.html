@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      body {
+        background: #b5abb3;
+      }
+
+      #box {
+        width: 850px;
+        background: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 0 10px #494242;
+        margin: 50px auto;
+        padding-top: 20px;
+      }
+
+      #box dl.select {
+        margin: 0;
+        padding: 0 20px;
+        background: #ebe4e4;
+        border-bottom: none;
+      }
+
+      #box dl {
+        margin: 0 20px;
+        height: 50px;
+        font-size: 14px;
+        border-bottom: 1px dashed #fad8e6;
+        overflow: hidden;
+      }
+
+      #box dl.select dd {
+        border: 1px solid #c4284d;
+        font-size: 14px;
+        padding: 2px 3px 2px 10px;
+        margin-top: 13px;
+        cursor: auto;
+      }
+
+      #box dl.select dt {
+        margin-top: 13px;
+      }
+
+      #box dl.select span {
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        line-height: 20px;
+        display: inline-block;
+        background: #c4284d;
+        color: #fff;
+        margin-left: 10px;
+        cursor: pointer;
+      }
+
+      #box dt {
+        float: left;
+        color: #8a8a8a;
+      }
+
+      #box dd {
+        float: left;
+        cursor: pointer;
+        font-size: 14px;
+        color: #252525;
+        margin: 0 10px;
+      }
+
+      #box dd.active {
+        color: #c4284d;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="box">
+      <dl>
+        <dt>品牌:</dt>
+        <dd>惠普</dd>
+        <dd>联想</dd>
+        <dd>戴尔</dd>
+        <dd>三星</dd>
+        <dd>宏基</dd>
+        <dd>苹果</dd>
+        <dd>神州</dd>
+        <dd>华硕</dd>
+        <dd>方正</dd>
+      </dl>
+      <dl>
+        <dt>价格：</dt>
+        <dd>3000-3999</dd>
+        <dd>4000-4999</dd>
+        <dd>5000-5999</dd>
+        <dd>6000-6999</dd>
+        <dd>7000-7999</dd>
+        <dd>8000-8999</dd>
+        <dd>9000-9999</dd>
+        <dd>10000以上</dd>
+      </dl>
+      <dl>
+        <dt>尺寸：</dt>
+        <dd>8.9英寸以及以下</dd>
+        <dd>11英寸</dd>
+        <dd>12英寸</dd>
+        <dd>13英寸</dd>
+        <dd>14英寸</dd>
+        <dd>15英寸</dd>
+        <dd>16英寸</dd>
+      </dl>
+      <dl>
+        <dt>显卡：</dt>
+        <dd>独立显卡</dd>
+        <dd>集成显卡</dd>
+        <dd>核芯显卡</dd>
+      </dl>
+      <dl class="select">
+        <dt>已选条件</dt>
+      </dl>
+    </div>
+    <script>
+      var ddDom = document.querySelectorAll('dd'),
+        dtDom = document.querySelectorAll('dl:not(.select) dt'),
+        dlDom = document.querySelectorAll('dl:not(.select)'),
+        select = document.querySelector('.select')
+      for (var i = 0; i < dlDom.length; i++) {
+        var dds = dlDom[i].querySelectorAll('dd')
+        dlDom[i].mark = false
+        var dd = null
+        for (var j = 0; j < dds.length; j++) {
+          dds[j].onclick = function() {
+            var activeDom = this.parentNode.querySelector('dd.active')
+            if (activeDom) {
+              activeDom.classList.remove('active')
+            }
+            this.classList.add('active')
+
+            var parent = this.parentNode
+
+            if (!parent.mark) {
+              dd = document.createElement('dd')
+              dd.innerHTML = this.innerHTML
+              select.appendChild(dd)
+            } else {
+              dd.innerHTML = this.innerHTML
+            }
+            var that = this
+            var span = document.createElement('span')
+            span.innerHTML = 'x'
+            span.onclick = function() {
+              select.removeChild(this.parentNode)
+              parent.mark = false
+              that.className = ''
+            }
+            dd.appendChild(span)
+            parent.mark = true
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.game {
+    width: 640px;
+    height: 640px;
+    background: url("./img/cross.png"), url("./img/bak.jpg");
+    margin: 0 auto;
+    position: relative;
+}
+
+.info {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.button {
+    text-align: center;
+    width: 80px;
+    height: 20px;
+    line-height: 20px;
+    margin: 10px auto;
+    border: 1px solid;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.game .chess {
+    position: absolute;
+    width: 36px;
+    height: 36px;
+
+}
+
+.white {
+    background: url("./img/white.png")
+}
+
+.black {
+    background: url("./img/black.png");
+
+}

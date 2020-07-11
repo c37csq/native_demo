@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+	<style>
+		* {
+			padding: 0px;
+			margin: 0px;
+		}
+
+		.mouses {
+			width: 800px;
+			margin: 0px auto;
+		}
+
+		.toolbar,
+		.start {
+			height: 60px;
+			line-height: 60px;
+			color: white;
+			background-color: #7cd3b1;
+			border: 2px solid #60a58a;
+			border-top: none;
+		}
+
+		.levels {
+			padding-left: 30px;
+
+		}
+
+		.tLeft {
+			float: left;
+			margin-left: 40px;
+		}
+
+		.tRight {
+			float: right;
+			margin-right: 40px;
+		}
+
+		.mou {
+			width: 100%;
+			display: flex;
+			flex-wrap: wrap;
+		}
+
+		.mouse {
+			width: 20%;
+			/* float: left; */
+			/* outline-width: 0px;
+			vertical-align: top; */
+		}
+
+		.start {
+			clear: both;
+			text-align: center;
+			cursor: pointer;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="mouses">
+		<div class="toolbar">
+			<div class="tLeft">
+				<span id="time">60</span>秒
+				<span class="levels">
+					难易程度
+					<select id="level">
+						<option value="2000" selected="selected">容易</option>
+						<option value="1000">适中</option>
+						<option value="500">困难</option>
+					</select>
+				</span>
+			</div>
+
+			<div class="tRight">
+				打中<span id="num">0</span>个
+			</div>
+		</div>
+		<div class="mou">
+
+		</div>
+		<div class="start">开始游戏</div>
+	</div>
+	<script>
+		var obj = {
+			init: function () {
+				var box = document.getElementsByClassName('mou')[0];
+				for (var i = 0; i < 20; i++) {
+					var img = new Image();
+					img.src = 'img/mouse.png';
+					img.classList.add('mouse');
+					box.appendChild(img);
+				}
+				this.bindEvent();
+
+			},
+			showMouse: function () {
+				var len = document.getElementsByClassName('mouse').length;
+				var ran = Math.floor(Math.random() * (len + 1));
+				var img = document.getElementsByClassName('mouse')[ran];
+				if (img.src = "./img/mouse.png") {
+					img.src = "img/mouse2.png";
+					setTimeout(() => {
+						img.src = "./img/mouse.png";
+					}, 3000);
+				} else {
+					setTimeout(() => {
+						img.src = "./img/mouse.png";
+					}, 2000);
+				}
+			},
+			startGame: function () {
+				var val = document.getElementById('level').value;
+				var timer1 = setInterval(() => {
+					this.showMouse();
+				}, val);
+				var timer = setInterval(() => {
+					var span = document.getElementById('time');
+					span.innerText--;
+					if (span.innerText <= '0') {
+						alert('游戏结束了');
+						clearInterval(timer);
+						clearInterval(timer1);
+					}
+				}, 1000);
+			},
+			bindEvent: function () {
+				var startBtn = document.getElementsByClassName('start')[0];
+				var that = this;
+				startBtn.onclick = function () {
+					that.startGame();
+					that.bindRemove();
+
+
+				}
+			},
+			bindRemove: function () {
+				var img = document.getElementsByClassName('mouse');
+				var len = [...document.getElementsByClassName('mouse')].length;
+				for (var i = 0; i < len; i++) {
+					var that = this;
+					img[i].onclick = function () {
+						if (this.src = "./img/mouse2.png") {
+							this.src = "./img/mouse3.png";
+							var span = document.getElementById('num');
+							span.innerText++;
+							var that = this;
+							setTimeout(function () {
+								that.src = "./img/mouse.png";
+							}, 500)
+						}
+					}
+				}
+			}
+
+		}
+		obj.init();
+		// obj.showMouse();
+
+
+
+
+
+
+
+
+
+
+
+		// //定义一个统计大众地鼠数量的变量
+		// var  num=0;
+		// //定义一个让地鼠冒出来的定时器
+		// var t;
+		// //定义一个让地鼠缩回去的定时器
+		// var t1;
+		// //点击开始游戏的事件
+		// //定义地鼠洞的图片
+		// var mouse1 = "img/mouse.png";
+		// //定义地鼠冒出来的图片
+		// var mouse2 = "img/mouse2.png";
+		// //定义一个地鼠打中的图片
+		// var mouse3 = "img/mouse3.png";
+		// //地方你故意一个初始的时间
+		// var  time=60;
+		// function showMouse() {
+		// 	//游戏重置
+		// 	reset();
+		// 	//获取到地鼠洞的个数
+		// 	var nums = document.getElementsByClassName("mouse").length;
+		// 	//获取游戏的难易程度
+		// 	var level=getById("level").value;
+		// 	//第一步让地鼠冒出来
+		// 	t = setInterval(function() {
+		// 		time--;
+		// 		getById("time").innerText=time;
+		// 		//判断如果时间等于0,游戏结束
+		// 		if(time==0){
+		// 			//清楚让地鼠冒出来的定时器
+		//                 clearInterval(t);
+		//                 clearTimeout(t1);
+		// 		}
+		// 		//生成一个0到地鼠个数减1的随机数 
+		// 		var rad = parseInt(Math.random() * nums);
+		// 		//让地鼠冒出来
+		// 		document.getElementsByClassName("mouse")[rad].src = mouse2;
+		// 		t1 = setTimeout(function() {
+		// 			//让地鼠缩回去 
+		// 			document.getElementsByClassName("mouse")[rad].src = mouse1;
+		// 		}, level);
+		// 	}, 1000);
+		// }
+		// //点击每一只地鼠的事件
+		// function clickMouse(e) {
+		// 	//判断地鼠是否冒出来(判断当前点击的图片是否是地鼠冒出来的图片)
+		// 	if(e.src.indexOf(mouse2)!=-1)
+		// 	    num++;
+		// 	    getById("num").innerText=num;
+		// 		e.src = mouse3;
+		// }
+		//       //根据Id返回标签的对象			
+		// function getById(id){
+		// 	return document.getElementById(id);
+		// }
+
+		// //游戏重置
+		// function reset(){
+		// 	time=60;
+		// 	getById("time").innerText=60;
+		// 	num=0;
+		// 	getById("num").innerHTML=num;
+		// 	clearInterval(t);
+		// 	clearTimeout(t1);
+		// }
+	</script>
+</body>
+
+</html>

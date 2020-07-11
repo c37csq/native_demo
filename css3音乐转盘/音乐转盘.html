@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    button {
+      position: absolute;
+      top: 0;
+    }
+
+    .wrapper {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .table {
+      width: 100px;
+      height: 100px;
+      border: 50px solid black;
+      border-radius: 50%;
+      background: url(./images/1.jpg);
+      background-size: 100% 100%;
+      animation: move 10s linear paused;
+    }
+
+    .pin {
+      width: 10px;
+      height: 150px;
+      background: #ccc;
+      border-bottom-left-radius: 100%;
+      border-bottom-right-radius: 100%;
+      position: absolute;
+      top: -90px;
+      left: 100px;
+      transform-origin: top;
+      transform: rotate(-50deg);
+      transition: all 0.8s linear;
+    }
+
+    @keyframes move {
+      0% {
+        transform: rorate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .active {
+      transform: rotate(-18deg);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="table"></div>
+    <div class="pin"></div>
+  </div>
+  <button id="btn">btn</button>
+  <script>
+    var table = document.getElementsByClassName('table')[0];
+    var btn = document.getElementById('btn');
+    var pin = document.getElementsByClassName('pin')[0];
+    var flag = true;
+    btn.onclick = function () {
+      if (flag) {
+        flag = false;
+        pin.className = ' pin active';
+        table.style.animationPlayState = 'running';
+
+      } else {
+        flag = true;
+        pin.className = 'pin';
+        table.style.animationPlayState = 'paused';
+      }
+
+    }
+  </script>
+</body>
+
+</html>

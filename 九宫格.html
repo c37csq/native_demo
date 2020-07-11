@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    .box {
+      width: 500px;
+      height: 500px;
+      display: flex;
+      /* border: 1px solid #000; */
+      margin: 0 auto;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+
+
+    }
+
+    .box div {
+      width: 150px;
+      height: 150px;
+      background: rgba(255, 0, 0, 0.8);
+      border-radius: 10px;
+      /* box-shadow: 0 5px 50px red; */
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <!-- <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div> -->
+  </div>
+  <script>
+    var oBox = document.getElementsByClassName('box')[0];
+    // var colorArr = ['black', 'orange', 'yellow', 'green', 'blue', 'purple', 'white', '#ccc', 'grey'];
+    var timer = null;
+
+    function createDiv() {
+      var str = `<div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>`;
+      oBox.innerHTML = str;
+    }
+    createDiv();
+
+    var oDiv = oBox.querySelectorAll('.box div');
+
+    function twinkle() {
+      timer = setInterval(function () {
+        // var arr = [];
+        var colorArr = ['black', 'orange', 'yellow', 'green', 'blue', 'purple', 'pink', '#ccc', 'grey'];
+        var divs = Array.from(oDiv);
+        for (var i = 0; i < 3; i++) {
+          var index = Math.floor(Math.random() * colorArr.length);
+          var color = colorArr[index];
+          var div = divs[index];
+          div.style.backgroundColor = color;
+          div.style.boxShadow = "0 20px 100px color";
+          divs.splice(index, 1)
+          colorArr.splice(index, 1);
+        }
+        window.setTimeout(function () {
+          for (var j = 0; j < oDiv.length; j++) {
+            oDiv[j].style.backgroundColor = 'rgba(255,0,0,0.8)';
+            oDiv[j].style.boxShadow = "0 0 0 rgba(255,0,0,0.8)";
+
+          }
+        }, 800)
+      }, 1000)
+    }
+    twinkle();
+
+
+
+
+    // function twinkle() {
+
+    // }
+  </script>
+</body>
+
+</html>

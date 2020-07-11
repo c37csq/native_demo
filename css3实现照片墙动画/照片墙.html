@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      .wrapper {
+        position: relative;
+        width: 300px;
+        height: 200px;
+        margin: 0 auto;
+        transform-style: preserve-3d;
+        margin-top: 200px;
+        animation: turn 10s linear infinite;
+      }
+      .wrapper div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 300px;
+        height: 200px;
+        text-align: center;
+        line-height: 200px;
+        color: white;
+        font-size: 30px;
+      }
+      .wrapper div img {
+        width: 300px;
+        height: 200px;
+      }
+      .wrapper .item1 {
+        background: red;
+        transform: rotate3d(0, 1, 0, 0deg) translate3d(0, 0, 300px);
+      }
+      .wrapper .item2 {
+        background: pink;
+        transform: rotate3d(0, 1, 0, 60deg) translate3d(0, 0, 300px);
+      }
+      .wrapper .item3 {
+        background: blue;
+        transform: rotate3d(0, 1, 0, 120deg) translate3d(0, 0, 300px);
+      }
+      .wrapper .item4 {
+        background: green;
+        transform: rotate3d(0, 1, 0, 180deg) translate3d(0, 0, 300px);
+      }
+      .wrapper .item5 {
+        background: purple;
+        transform: rotate3d(0, 1, 0, 240deg) translate3d(0, 0, 300px);
+      }
+      .wrapper .item6 {
+        background: orange;
+        transform: rotate3d(0, 1, 0, 300deg) translate3d(0, 0, 300px);
+      }
+      @keyframes turn {
+        0% {
+          transform: rotateX(-15deg) rotateY(0deg);
+        }
+        100% {
+          transform: rotateX(-15deg) rotateY(360deg);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="item1"><img src="./images/1.jpg" alt="" /></div>
+      <div class="item2"><img src="./images/2.jpg" alt="" /></div>
+      <div class="item3"><img src="./images/3.jpg" alt="" /></div>
+      <div class="item4"><img src="./images/4.jpg" alt="" /></div>
+      <div class="item5"><img src="./images/5.jpg" alt="" /></div>
+      <div class="item6"><img src="./images/6.jpg" alt="" /></div>
+    </div>
+  </body>
+</html>

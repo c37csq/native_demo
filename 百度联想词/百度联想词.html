@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      text-decoration: none;
+    }
+
+    .wrapper {
+      width: 400px;
+      margin: 100px auto;
+    }
+
+    .wrapper input {
+      width: 400px;
+      height: 25px;
+      line-height: 25px;
+      border: 1px solid black;
+      text-indent: 8px;
+    }
+
+    .wrapper ul {
+      display: none;
+      width: 400px;
+      border: 1px solid black;
+    }
+
+    a {
+      display: block;
+      color: #999;
+      font-size: 14px;
+      margin: 5px;
+    }
+
+    li:hover {
+      background: #ddd;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <input type="text" />
+    <ul></ul>
+  </div>
+  <script>
+    var oInput = document.getElementsByTagName('input')[0]
+    var oUl = document.getElementsByTagName('ul')[0]
+    oInput.oninput = function () {
+      var value = oInput.value
+      var oScript = document.createElement('script')
+      oScript.src =
+        'https://www.baidu.com/sugrec?pre=1&p=3&ie=utf-8&json=1&prod=pc&from=pc_web&sugsid=1460,21103,29237,28518,29099,28835,29221,26350,20719&wd=' +
+        value +
+        '&cb=showmessage'
+      document.body.appendChild(oScript)
+      document.body.removeChild(oScript)
+    }
+
+    function showmessage(data) {
+      var str = '',
+        g = data.g
+      if (g.length > 0) {
+        g.forEach(function (ele, index) {
+          str +=
+            '<li><a href=https://www.baidu.com/s?wd=' +
+            ele.q +
+            ' >' +
+            ele.q +
+            '</a></li>'
+        })
+        oUl.innerHTML = str
+        oUl.style.display = 'block'
+      } else {
+        oUl.style.display = 'none'
+      }
+    }
+  </script>
+</body>
+
+</html>

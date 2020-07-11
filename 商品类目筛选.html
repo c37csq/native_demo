@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		body {
+			background: #b5abb3;
+		}
+
+		dl,
+		dd {
+			margin: 0;
+		}
+
+		#box {
+			width: 850px;
+			background: rgba(255, 255, 255, 0.8);
+			box-shadow: 0 0 10px #494242;
+			margin: 50px auto;
+			padding-top: 20px;
+		}
+
+		#box dl {
+			margin: 0 20px;
+			height: 50px;
+			font: 14px/50px "Arial";
+			border-bottom: 1px dashed #fad8e6;
+			overflow: hidden;
+		}
+
+		#box dl.select {
+			margin: 0;
+			padding: 0 20px;
+			background: #ebe4e4;
+			border-bottom: none;
+		}
+
+		/*#box dl.select dt{
+				border: 1px solid #c4284d;
+			}*/
+		#box dl.select dd {
+			border: 1px solid #c4284d;
+			font: 14px/25px "Arial";
+			padding: 0 2px 0 10px;
+			margin-top: 13px;
+			cursor: auto;
+		}
+
+		#box dl.select span {
+			width: 20px;
+			height: 20px;
+			text-align: center;
+			line-height: 20px;
+			display: inline-block;
+			background: #c4284d;
+			color: #fff;
+			margin-left: 10px;
+			cursor: pointer;
+		}
+
+		#box dt {
+			float: left;
+
+			color: #8a8a8a;
+		}
+
+		#box dd {
+			float: left;
+			cursor: pointer;
+			font-size: 14px;
+			color: #252525;
+			margin: 0 10px;
+		}
+
+		#box dd.active {
+			color: #c4284d;
+		}
+	</style>
+	<script>
+		window.onload = function () {
+			var dls = document.querySelectorAll("dl:not(.select)"); //最后一个dl是不需要选中的
+			var selected = document.querySelector(".select"); //最后一个dl
+
+			for (var i = 0; i < dls.length; i++) {
+				dls[i].mark = false;
+				select(i);
+			}
+
+			function select(n) {
+				var dds = dls[n].querySelectorAll('dd');
+				var dd = null; //存当前点击对应下面的dd标签
+
+				for (var i = 0; i < dds.length; i++) {
+					dds[i].onclick = function () {
+						/*
+						 * dd点击的时候要做的事情
+						 * 	1、去除掉其它的颜色，给自己加上一个颜色
+						 * 	2、创建dd、span标签
+						 * 	3、修改父级的mask属性，阻止重复创建dd标签
+						 */
+
+						//给点击的加上颜色，去掉其它的颜色
+						for (var i = 0; i < dds.length; i++) {
+							dds[i].setAttribute('class', '');
+						}
+						this.setAttribute('class', 'active');
+
+
+						/*
+						 * 创建标签
+						 * 	1、如果下面没有对应的标签创建标签
+						 * 	2、如果下面有对应的标签，只修改内容
+						 * 	注意：创建标签的变量一定要加for循环外面（函数开头的位置）
+						 */
+						var parent = this.parentNode;
+						if (!parent.mark) {
+							dd = document.createElement("dd");
+							dd.innerHTML = this.innerHTML;
+							selected.appendChild(dd);
+						} else {
+							dd.innerHTML = this.innerHTML;
+						}
+
+						var This = this; //点击“x”后去除class，所以要用到点击的那个对象
+
+						//不管用不用创建dd标签，都需要创建一个关闭的标签，一定要放在条件外面创建span
+						var span = document.createElement("span");
+						span.innerHTML = 'x';
+						span.onclick = function () {
+							/*
+							 * 关闭按钮点击后要做的事情
+							 * 	1、把这个dd标签移除掉
+							 * 	2、父级的mask属性要设置为false，为了关闭后能下次创建
+							 * 	3、把上面点击的那个dd的class去掉
+							 */
+							selected.removeChild(dd);
+							parent.mark = false;
+							This.className = '';
+						};
+						dd.appendChild(span);
+
+
+						parent.mark = true; //创建下面的dd标签后，把它的值设为true，避免重复创建下面的dd标签
+					};
+				}
+			}
+		};
+	</script>
+</head>
+
+<body>
+	<div id="box">
+		<dl>
+			<dt>品牌：</dt>
+			<dd>惠普</dd>
+			<dd>联想</dd>
+			<dd>戴尔</dd>
+			<dd>三星</dd>
+			<dd>宏基</dd>
+			<dd>苹果</dd>
+			<dd>神舟</dd>
+			<dd>华硕</dd>
+			<dd>方正</dd>
+		</dl>
+		<dl>
+			<dt>价格：</dt>
+			<dd>3000-3999</dd>
+			<dd>4000-4999</dd>
+			<dd>5000-5999</dd>
+			<dd>6000-6999</dd>
+			<dd>7000-7999</dd>
+			<dd>8000-8999</dd>
+			<dd>9000-9999</dd>
+			<dd>10000以上</dd>
+		</dl>
+		<dl>
+			<dt>尺寸：</dt>
+			<dd>8.9英寸以及以下</dd>
+			<dd>11英寸</dd>
+			<dd>12英寸</dd>
+			<dd>13英寸</dd>
+			<dd>14英寸</dd>
+			<dd>15英寸</dd>
+			<dd>16英寸</dd>
+		</dl>
+		<dl style="border: none;">
+			<dt>显卡：</dt>
+			<dd>独立显卡</dd>
+			<dd>集成显卡</dd>
+			<dd>核芯显卡</dd>
+		</dl>
+		<dl class="select">
+			<dt>已选条件</dt>
+		</dl>
+	</div>
+</body>
+
+</html>

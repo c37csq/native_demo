@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+	<script>
+		/*
+			1、变量的生命周期
+				1、局部变量的生命周期在函数执行完成以后就到头了
+				2、全局变量的生命周期在页面关闭后就到头了
+			2、垃圾回收机制
+				1、标记清除
+				2、引用计数
+				注意：如果说这个数据有引用的关系，就不会被回收
+			3、执行上下文（当前代码的执行环境，EC）
+				1、全局环境
+				2、函数环境
+				3、eval环境
+			4、执行上下文栈（ECS），函数调用栈（call stack）
+				1、变量对象
+
+
+			1、普通函数，定义函数的时候是嵌套的，调用的时候也是嵌套的
+			2、闭包函数，定义函数的时候是嵌套的，调用的时候是独立的
+
+
+			创建完EC后需要走两个阶段
+				1、创建阶段
+				2、代码执行阶段
+		 */
+
+
+		/* function fn(){
+			var a=10;
+		}
+		fn();
+		console.log(a); */
+
+
+		/* function father(){
+			debugger;	//打上一个断点，用来调试
+			function son(){
+				debugger;
+			}
+
+			son();
+			debugger;
+		}
+
+		father();
+		debugger; */
+
+
+		/* function father(){
+			var n=0;
+			function son(){
+				n++;
+				debugger;
+			}
+
+			debugger;
+			return son;
+		}
+
+		var result=father();
+		debugger;
+		result();
+		debugger; */
+
+
+		function father(){
+			var n=30;
+			function son(){
+				n++;
+				console.log(n);
+			}
+
+			return son;
+		}
+
+		var result=father();
+		result();	//31
+		result();	//32
+
+
+
+		//fatherEC的内部走的路子
+		//1、创建阶段
+		/* fatherEC={
+			VO:{	//变量对象
+				n:undefined	//找变量声明
+				//son:'son在内存里的引用地址'
+			},
+			scope:[	//存储作用域链
+				Global.AO
+			],
+			//this:'window'
+		}
+
+		//2、执行阶段
+		fatherEC={
+			AO:{	//变量对象
+				n:30	//变量赋值
+			},
+			scope:[	//存储作用域链
+				fatherEC.AO,Global.AO
+			],
+			//this:'window'
+		}
+
+
+		//sonEC的内部走的路子
+		//1、创建阶段
+		sonEC={
+			VO:{	//变量对象
+			},
+			scope:[	//存储作用域链
+				fatherEC.AO,Global.AO
+			],
+			//this:'window'
+		}
+
+		//2、执行阶段
+		sonEC={
+			AO:{	//变量对象
+			},
+			scope:[	//存储作用域链
+				sonEC.AO,fatherEC.AO,Global.AO
+			],
+			//this:'window'
+		} */
+
+	</script>
+</body>
+</html>

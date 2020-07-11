@@ -1,0 +1,30 @@
+*{
+    margin:0;
+    padding:0;
+}
+.game{
+    width:500px;
+    height:500px;
+    padding-top:150px;
+    margin:100px auto;
+    border:1px solid #000;
+    box-sizing: border-box;
+    background:green;
+    position: relative;
+}
+.game .player{
+    width:20px;
+    height:20px;
+    background:#000;
+    position: absolute;
+}
+.game .monster{
+    width:20px;
+    height:20px;
+    background:red;
+    position: absolute;
+}
+.timer{
+    text-align:center;
+    margin-top:20px;
+}

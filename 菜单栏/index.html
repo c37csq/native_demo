@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <ul class="menu">
+            <li class="item">
+                <a href="#" class="btn">student</a>
+                <div class="subMenu">
+                    <a href="#">item-1</a>
+                    <a href="#">item-2</a>
+                    <a href="#">item-3</a>
+                </div>
+            </li>
+            <li class="item">
+                <a href="#" class="btn">about</a>
+                <div class="subMenu">
+                    <a href="#">item-1</a>
+                    <a href="#">item-2</a>
+                </div>
+            </li>
+            <li class="item">
+                <a href="#" class="btn">class</a>
+                <div class="subMenu">
+                    <a href="#">item-1</a>
+                    <a href="#">item-2</a>
+                </div>
+            </li>
+            <li class="item" class="btn">
+                <a href="#" class="btn">out</a>
+                <div class="subMenu">
+                    <a href="#">item-1</a>
+                    <a href="#">item-2</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <script>
+        var btn = document.getElementsByClassName('btn');
+        var len = btn.length;
+        for (var i = 0; i < len; i++) {
+            btn[i].onclick = function () {
+                var li = this.parentNode;
+                var show = document.getElementsByClassName('show')[0];
+                if (show) {
+                    show.classList.remove('show');
+                }
+                li.classList.add('show');
+            }
+        }
+        var menu = document.getElementsByClassName('menu')[0];
+        menu.onmouseleave = function () {
+            var show = document.getElementsByClassName('show')[0];
+            if (show) {
+                show.classList.remove('show');
+            }
+        };
+    </script>
+</body>
+
+</html>

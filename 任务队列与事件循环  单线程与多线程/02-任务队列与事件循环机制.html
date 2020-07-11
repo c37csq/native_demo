@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text">
+		<button>点击</button>
+		<input type="text">
+		<script>
+			/*
+				任务队列（消息队列）
+					分类
+						1、task（macrotask）		宏任务队列
+							1、DOM操作
+							2、用户交互（事件）
+							3、网络任务（ajax）
+							4、history traversal任务（h5当中的历史操作）
+							5、定时器
+						2、microtask				微任务队列
+							1、Promise
+							2、process.nextTick（nodejs中的一个异步操作）
+							3、MutationObserver（H5里面增加的，用来监听DOM节点变化的）
+
+				
+				事件循环	Event Loop
+					1、它是HTML规范中定义的或者是DOM中定义的，并不是ECMAScript定义的
+						1、https://www.w3.org/TR/html5/webappapis.html#event-loops
+						2、https://html.spec.whatwg.org/#event-loops
+					2、它包括两种，一种在浏览器上下文里，一种在web workers里（HTML5）
+					3、它是一种分配模式，把任务队列里的任务分配给全局执行上下文进行执行
+					4、执行顺序
+						1、先把微任务队列里的任务拿出来交给全局执行上下文执行
+						2、再把宏任务队列里的任务拿出来交给全局执行上下文执行
+						3、不断的循环
+					注意：
+						1、任务队列（异步代码）里的代码最终还是要放到全局执行上下文（同步的代码）里去执行
+						2、当全局执行上下文里的代码都执行完了才去执行任务队列里的代码
+						3、宏任务与微任务的区别是：宏任务会再下一次的Event Loop里执行，微任务会在本次Event Loop里执行
+			 */
+
+			
+			/* setTimeout(function(){
+				console.log('老沙最慢');	//1
+			},100);
+
+			setTimeout(function(){
+				console.log('八戒第二');	//2
+			},0);	
+
+			console.log('猴哥最快');	//3 */
+
+
+			/* console.log('全局的');		//1
+			setTimeout(function(){
+				console.log('定时器的');	//2
+			},0);
+			new Promise(function(resolve){
+				console.log('Promise的');	//3
+				resolve();
+				console.log('1');
+			}).then(function(){
+				console.log('then的');	//4
+			}); */
+
+			/* setTimeout(function(){
+				console.log(1);
+			},0);
+
+			new Promise(function(resolve){
+				console.log(2);
+				for(var i=0;i<10000;i++){
+					i==9999&&resolve();
+				}
+				console.log(3);
+			}).then(function(){
+				console.log(4);
+			});
+
+			console.log(5); */
+
+			//23541
+
+
+			var inputs=document.querySelectorAll('input');
+			var btn=document.querySelector('button');
+
+			btn.onclick=function(){
+				//inputs[0].value+=' button';
+				setTimeout(function(){
+					inputs[0].value+=' button';	// body button
+				},0);
+			};
+
+			document.body.onclick=function(){
+				inputs[0].value+=' body';
+			};
+
+
+			inputs[1].onkeydown=function(){
+				var This=this;
+				setTimeout(function(){
+					console.log(This.value);
+				},0);
+			};
+
+			asdfasdfsdasdfasdfasdf
+		</script>
+	</body>
+</html>

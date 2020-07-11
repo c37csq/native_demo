@@ -1,0 +1,55 @@
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+body{
+    overflow: hidden;
+}
+.container{
+    position: relative;
+    width: 380px;
+    height: 400px;
+    margin: 100px auto;
+    border: 1px solid red;
+    overflow: hidden;
+
+}
+.container .content{
+    position: absolute;
+    width: 350px;
+    left: 0;
+    top: 0;
+}
+.container .scroll{
+    position: absolute;
+    width: 28px;
+    border: 1px solid black;
+    right: 0;
+    top:0;
+
+}
+.container .scroll .duration{
+    position: relative;
+    width: 100%;
+    height: 342px;
+}
+.container .scroll .icon{
+     width: 100%;
+     height: 28px;
+     cursor: pointer;   
+}
+.container .scroll .icon img{
+    width: 28px;
+    height: 100%;
+}
+
+.container .scroll .duration .bar{
+    position: absolute;
+    background: red;
+    width: 100%;
+    left: 0;
+    top:0;
+    /* height: 50px; */
+    cursor: -webkit-grabbing;
+}

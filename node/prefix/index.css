@@ -1,0 +1,15 @@
+div{
+    transition: all 2s;
+    transform:translate(-50%);
+    box-sizing: border-box;
+    background-origin: border-box;
+    transform:translateX(100px);
+    animation:move 0.1 linear;
+    animation:leave 5s linear;
+    box-shadow:10px 10px #000;
+    animation:get 3s linear;
+    animation:get 3s linear;
+    animation:get 3s linear;
+    animation:drop 2s linear 0.5s;
+    transform: inherit;
+}

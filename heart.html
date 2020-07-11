@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">
+</head>
+<style>
+  .heart {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    margin-left: 50px;
+    background-color: #ccc;
+  }
+
+  .heart:before,
+  .heart:after {
+    content: "";
+    position: absolute;
+    background-color: red;
+    width: 50px;
+    height: 100%;
+    left: 0;
+    border-radius: 35px 35px 0 0;
+  }
+
+  .heart::before {
+    transform: translateX(50%) rotateZ(45deg);
+  }
+
+  .heart::after {
+    transform: rotateZ(-45deg) translate(-8px, -8px);
+  }
+
+  .heart1 {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    margin-left: 500px;
+  }
+
+  .heart1:before,
+  .heart1:after {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    content: "";
+    display: inline-block;
+    background: red;
+    transform: rotateZ(45deg);
+    transform-origin: 0 100%;
+    border-radius: 25px 25px 0 0;
+    left: 0;
+  }
+
+  .heart1:before {
+    left: 20%;
+    transform: rotateZ(-45deg);
+    transform-origin: 100% 100%;
+  }
+</style>
+
+<body>
+  <div class="heart"></div>
+  <div class="heart1"></div>
+</body>
+
+</html>

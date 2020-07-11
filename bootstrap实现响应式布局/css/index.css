@@ -1,0 +1,96 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width:768px) {
+  .nav-bar {
+    min-height: 40px;
+  }
+}
+
+.jumbotron {
+
+  padding-top: 130px;
+  padding-bottom: 80px;
+
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, .4), 0 0 30px rgba(0, 0, 0, .075);
+  background: linear-gradient(45deg, #020031, #6d3353);
+
+}
+
+
+
+.jumbotron h1 {
+  line-height: 1;
+  font-size: 100px;
+  font-weight: 700;
+  color: white;
+
+}
+
+
+
+.jumbotron h2 {
+  color: white;
+  font-weight: 200;
+  line-height: 1.25;
+  font-size: 18px;
+}
+
+@media screen and (min-width:768px) {
+  .jumbotron h2 {
+    font-size: 24px;
+  }
+}
+
+@media screen and (min-width:992px) {
+  .jumbotron h2 {
+    font-size: 30px;
+  }
+}
+
+.bc-social {
+  padding: 15px 0;
+  text-align: center;
+  background: #f5f5f5;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+@media (min-width:992px) {
+  .bc-social .container {
+    width: 970px;
+  }
+}
+
+@media (min-width:768px) {
+  .bc-social .container {
+    width: 750px;
+  }
+}
+
+.bc-social-buttons {
+  margin-left: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.bc-social-buttons li {
+  display: inline-block;
+  line-height: 1;
+  color: #555;
+  margin-right: 10px;
+}
+
+.bc-social-buttons .social-forum:after {
+  content: '|';
+  display: inline-block;
+  color: #000;
+  margin-left: 10px;
+
+
+}

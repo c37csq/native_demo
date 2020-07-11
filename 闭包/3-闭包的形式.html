@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+	<ul>
+		<li>red</li>
+		<li>green</li>
+		<li>blue</li>
+		<li>yellow</li>
+		<li>pink</li>
+	</ul>
+	<script>
+		/* var a=20;
+		function wrapFn(){	//这个函数就是一个闭包函数
+			var b=10;
+			function inerFn(){
+				//var b=b;
+				console.log(b);
+				debugger;
+			}
+
+			return inerFn;
+		}
+		var fn=wrapFn();
+		fn(a); */
+
+
+		/* function wrapFn(){	//1
+			var a=10;
+			return function(){	//2
+				var b=20;
+				return function(){	//3
+					console.log(b);
+					console.log(a);
+					debugger;
+				}
+			}
+		}
+
+		var son=wrapFn()()(); */
+
+
+		//特殊情况。只要子函数与父函数能够凑到一起满足闭包的条件，那就形成闭包环境
+
+		/*
+			闭包的条件
+				1、有父子函数的关系
+				2、子函数使用了父函数的变量
+				3、子函数有调用 
+		 */
+		function wrapFn(){
+			var a=10;
+			function innerFn1(){
+				return a;	//innerFn1是一个子函数，它的里用到了a，这个a是父级的。但是这个函数并没有调用 
+			}
+			function innerFn2(){	//innerFn2是一个子函数，它里面没有用到a。但是它调用了。所以就让父函数形成了一个闭包环境
+				//debugger;
+			}
+
+			innerFn2();
+
+			//debugger;
+		}
+		wrapFn();
+
+
+		var lis=document.querySelectorAll('li');
+		for(var i=0;i<lis.length;i++){
+			(function(i){
+				lis[i].onclick=function(){
+					console.log(i);
+				}
+			})(i);
+		}
+	</script>
+</body>
+</html>

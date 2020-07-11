@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+
+  }
+
+  #water {
+    position: relative;
+    width: 90%;
+    margin: 0 auto;
+    outline: 1px solid black;
+  }
+
+  #water img {
+    transition: all 0.5s;
+  }
+</style>
+
+<body>
+  <div id="water">
+
+  </div>
+  <script src="./js/waterfall.js"></script>
+  <script>
+    var water = document.getElementById('water');
+    var imgs = [];
+    for (var i = 0; i <= 40; i++) {
+      imgs.push('./images/' + i + '.jpg');
+    }
+    createWaterFall(water, imgs, 220)
+  </script>
+</body>
+
+</html>

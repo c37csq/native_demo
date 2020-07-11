@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style></style>
+  </head>
+  <body>
+    <canvas id="me" width="500" height="300"></canvas>
+    <script>
+      var canvas = document.getElementById('me')
+      var ctx = canvas.getContext('2d')
+      var w = canvas.width
+      var h = canvas.height
+      var lastPoint = {}
+      var nowPoint = {}
+      function init() {
+        // 全局透明度
+        // ctx.globalAlpha = 0.5
+        ctx.fillStyle = '#ccc'
+        ctx.fillRect(0, 0, w, h)
+        ctx.globalCompositeOperation = 'destination-out'
+        var img = new Image()
+        img.src = './images/1.jpg'
+
+        img.onload = function() {
+          canvas.style.background = 'url(' + img.src + ')'
+          canvas.addEventListener('mousedown', downFunc, false)
+        }
+      }
+      init()
+      function downFunc(e) {
+        lastPoint.x = e.clientX - canvas.offsetLeft
+        lastPoint.y = e.clientY - canvas.offsetTop
+        canvas.addEventListener('mousemove', moveFunc, false)
+        document.addEventListener('mouseup', upFunc, false)
+      }
+      function moveFunc(e) {
+        nowPoint.x = e.clientX - canvas.offsetLeft
+        nowPoint.y = e.clientY - canvas.offsetTop
+        ctx.beginPath()
+        // ctx.fillStyle = 'red'
+        ctx.lineCap = 'round'
+        ctx.lineWidth = 40
+        ctx.moveTo(lastPoint.x, lastPoint.y)
+        ctx.lineTo(nowPoint.x, nowPoint.y)
+        ctx.stroke()
+
+        ctx.arc(nowPoint.x, nowPoint.y, 20, 0, Math.PI * 2, 0)
+        ctx.closePath()
+        ctx.fill()
+        lastPoint.x = nowPoint.x
+        lastPoint.y = nowPoint.y
+      }
+      function upFunc() {
+        canvas.removeEventListener('mousemove', moveFunc, false)
+        document.removeEventListener('mouseup', upFunc, false)
+        clearCanvas()
+      }
+
+      function clearCanvas() {
+        var arr = ctx.getImageData(0, 0, w, h)
+        var c = 0
+        var len = arr.data.length
+        for (var i = 0; i < len; i += 4) {
+          if (arr.data[i] === 0) {
+            c++
+          }
+        }
+        if (c > (len / 4) * 0.7) {
+          ctx.clearRect(0, 0, w, h)
+        }
+      }
+    </script>
+  </body>
+</html>

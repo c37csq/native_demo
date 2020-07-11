@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<title></title>
+	<style>
+		#box {
+			width: 200px;
+			height: 200px;
+			background: green;
+			position: absolute;
+			left: 300px;
+			top: 300px;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="box"></div>
+	<script>
+		/*
+			1、改变鼠标的样式
+			2、改变盒子的样式
+
+			这两个功能必需在鼠标移动的时候完成
+
+			如何区分：需要知道鼠标有没有按下去
+				1、鼠标按下，改变盒子的样式
+				2、鼠标没有按下，改变鼠标的样式
+
+
+			cursor
+				鼠标方向
+					左		w-resize
+					上		n-resize
+					右		e-resize
+					下		s-resize
+
+					左上	nw-resize
+					右上	ne-resize
+					右下	se-resize
+					左下	sw-resize
+		 */
+
+		var box = document.getElementById('box')
+		var isDown = false //鼠标是否按下去
+		var dir = '' //存储鼠标的样式
+		var mes = {} //存储盒子身上的各种信息
+
+		function getPos(obj) {
+			return obj.getBoundingClientRect() //获取DOM元素身上的各种信息
+		}
+		console.log(getPos(box).top)
+		box.onmousedown = function (ev) {
+			isDown = true
+
+			mes = {
+				x: ev.clientX,
+				y: ev.clientY,
+				w: getPos(box).width,
+				h: getPos(box).height,
+				l: getPos(box).left,
+				r: getPos(box).right,
+				t: getPos(box).top,
+				b: getPos(box).bottom
+			}
+		}
+		document.onmousemove = function (ev) {
+			if (!isDown) {
+				//鼠标没有按下，这里要做的事情是改变鼠标的样式
+
+				box.style.cursor = 'auto'
+				dir = ''
+
+				//上边鼠标的样式
+				if (ev.clientY < getPos(box).top + 10) {
+					//这个条件成立，说明鼠标在盒子的上边
+					dir += 'n'
+				}
+
+				//下
+				if (ev.clientY > getPos(box).bottom - 10) {
+					dir += 's'
+				}
+
+				//左
+				if (ev.clientX < getPos(box).left + 10) {
+					dir += 'w'
+				}
+
+				//右
+				if (ev.clientX > getPos(box).right - 10) {
+					dir += 'e'
+				}
+
+				//console.log(dir);
+
+				box.style.cursor = dir + '-resize'
+
+				//dir=se
+			} else {
+				//鼠标按下了，这里要做的事情是改变盒子的样式
+
+				//往右拖
+				if (dir.indexOf('e') != -1) {
+					//这个条件成立，说明用户是往右边拖
+					//w=原来的宽度（mes.w）+拖动的距离（ev.clientX-mes.x）
+					var w = mes.w + ev.clientX - mes.x
+
+					if (w < 200) {
+						w = 200
+					}
+
+					box.style.width = w + 'px'
+				}
+
+				//往下拖
+				if (dir.indexOf('s') != -1) {
+					//这个条件成立，说明用户是往右边拖
+					//w=原来的宽度（mes.w）+拖动的距离（ev.clientX-mes.x）
+					var h = mes.h + ev.clientY - mes.y
+
+					if (h < 200) {
+						h = 200
+					}
+
+					box.style.height = h + 'px'
+				}
+
+				if (dir.indexOf('w') != -1) {
+					//l=原来的距离（mes.l）-拖动的距离（mes.x-ev.clientX）
+					var w = mes.w + mes.x - ev.clientX
+					var l = mes.l - (mes.x - ev.clientX)
+
+					if (w < 200) {
+						w = 200
+						l = mes.r - 200
+					}
+
+					box.style.left = l + 'px'
+					box.style.width = w + 'px'
+				}
+
+				if (dir.indexOf('n') != -1) {
+					//l=原来的距离（mes.l）-拖动的距离（mes.x-ev.clientX）
+					var h = mes.h + mes.y - ev.clientY
+					var t = mes.t - (mes.y - ev.clientY)
+
+					if (h < 200) {
+						h = 200
+						t = mes.b - 200
+					}
+
+					box.style.top = t + 'px'
+					box.style.height = h + 'px'
+				}
+			}
+		}
+		document.onmouseup = function () {
+			isDown = false
+		}
+	</script>
+</body>
+
+</html>

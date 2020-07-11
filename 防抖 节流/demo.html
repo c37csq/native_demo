@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="search" />
+    <button class="btn">btn</button>
+
+    <div
+      class="wrapper"
+      style="width:300px;height:300px;background: #ccc;line-height: 300px;text-align: center;"
+    >
+      0
+    </div>
+    <script>
+      //防抖
+      function cb(e) {
+        console.log(this.value)
+        console.log(e.target)
+      }
+      var setUseAction = debounce(cb, 3000, false)
+      var btn = document.getElementsByClassName('btn')[0]
+      var search = document.getElementById('search')
+      btn.onclick = setUseAction.cancel
+      search.oninput = setUseAction
+      function debounce(func, time, flag) {
+        var timer = null
+        var debounced = function() {
+          var _this = this
+          var argu = arguments
+          clearTimeout(timer)
+          if (flag) {
+            if (!timer) func.apply(_this, argu)
+            timer = setTimeout(function() {
+              timer = null
+            }, time)
+          } else {
+            timer = setTimeout(function() {
+              func.apply(_this, argu)
+            }, time)
+          }
+        }
+        debounced.cancel = function() {
+          clearTimeout(timer)
+          timer = null
+        }
+        return debounced
+      }
+
+      //节流
+      var oDiv = document.getElementsByTagName('div')[0]
+      // oDiv.onmousemove = function() {
+      //   oDiv.innerHTML++
+      // }
+      oDiv.onmousemove = throttle(function() {
+        this.innerHTML++
+      }, 100)
+      //时间戳
+      function throttle(func, waitTime) {
+        var lastTime = 0
+        return function() {
+          var now = new Date().getTime()
+          if (now - lastTime > waitTime) {
+            func.apply(this, arguments)
+            lastTime = now
+          }
+        }
+      }
+
+      //计时器
+      function throttle(func, waitTime) {
+        var timer = null
+        return function() {
+          var _this = this
+          var argu = arguments
+          if (!timer) {
+            timer = setTimeout(function() {
+              func.apply(_this, argu)
+              timer = null
+            }, waitTime)
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

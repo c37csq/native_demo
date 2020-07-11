@@ -1,0 +1,83 @@
+body {
+    background: #333;
+}
+
+.container {
+    width: 800px;
+    margin: 0 auto;
+}
+
+.title {
+    font-size: 2em;
+    color: #fff;
+    text-align: center;
+    margin: 30px 0;
+}
+
+audio {
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+}
+
+.music {
+    background: #fff;
+    margin-top: 20px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.music .list {
+    height: 300px;
+    overflow: hidden;
+    padding: 20px 0;
+    margin: 0;
+    list-style: none;
+}
+
+.music .list li {
+    height: 35px;
+    line-height: 35px;
+    padding: 0 20px;
+}
+
+.music .list li .play {
+    background: url("./images/play.png") no-repeat left top/100%;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    vertical-align: -4px;
+    cursor: pointer;
+}
+
+.music .list li .close{
+    float: right;
+    width: 16px;
+    height: 16px;
+    margin-top: 8px;
+    cursor: pointer;
+    background: url("./images/close.png") no-repeat left top/100%;
+}
+
+.music .list li:hover{
+    background: #ccc;
+}
+
+.scroll-bar{
+    position: absolute;
+    width: 8px;
+    background: #f40;
+    right: 0;
+    top: 0;
+    border-radius: 4px;
+    cursor: pointer;
+    /* box-shadow: 0 0 3px 3px rgba(0,0,0,.5); */
+}
+
+.playing{
+    color: #f40;
+}
+
+.music .list li.playing .play{
+    display: none;
+}

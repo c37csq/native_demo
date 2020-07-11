@@ -1,0 +1,66 @@
+.container {
+    width: 234px;
+    margin: 0 auto;
+}
+
+.sn {
+    background: #f2ece1;
+    border-radius: 16px;
+    border: 1px solid #ddd;
+    padding: 16px 16px 7px;
+    /* overflow: hidden; */
+}
+
+.sn-img {
+    position: relative;
+}
+
+.sn-img img {
+    height: 100px;
+    display: block;
+    box-shadow: 0px 0px 6px 0px #73706e;
+}
+
+.sn-img .cvs {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 100px;
+    border: 1px solid #000;
+}
+
+.reload {
+    margin-top: 5px;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    background: url("./images/reload.png") no-repeat left top/100% 100%;
+}
+
+.slider-container {
+    background: #f2ece1;
+    padding: 20px 40px;
+    margin-top: 20px;
+    border-radius: 24px;
+}
+
+.slider {
+    position: relative;
+    height: 10px;
+    background: #f27171;
+    border-radius: 5px;
+}
+
+.slider .bar {
+    width: 30px;
+    height: 30px;
+    background: #827878;
+    border-radius: 50%;
+    box-shadow: 0px 0px 6px 0px #73706e;
+    position: absolute;
+    left: 0%;
+    top: 0;
+    transform: translate(-10px, -10px);
+    cursor: pointer;
+}

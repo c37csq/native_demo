@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+	<script>
+		/* function father(){
+			var a=10;
+			function son(){
+				a++;
+				console.log(a);	//11
+			}
+			son();
+		}
+		father(); */
+
+		/* var n=10;
+		function fn(){
+			console.log(n);
+		}
+		fn();
+
+
+		function fn1(){
+			var n2=20;
+		}
+		fn1();
+		console.log(n2); */
+
+
+		/* var innerFn=null;
+		function father(){
+			var n=10;
+			function son(){
+				n++;
+				console.log(n);
+			}
+
+			innerFn=son;
+		}
+
+		father();
+		innerFn(); */
+
+
+		function father(){
+			var n=10;
+			function son(){
+				n++;
+				console.log(n);
+			}
+
+			return son;
+		}
+
+		var result=father();
+		result();
+
+		//闭包：由父函数与子函数组成，子函数在调用的时候读取父函数的变量，就产生了闭包
+	</script>
+</body>
+</html>

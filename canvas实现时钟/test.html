@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #cvs {
+            background: #ddd;
+            display: block;
+            margin: 0 auto;
+            /* width: 1000px;
+            height: 1000px; */
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="cvs" width="500" height="500"></canvas>
+
+    <script>
+        //根据角度计算弧度
+        function getRadian(angle){
+            return angle * Math.PI / 180;
+        }
+
+        var cvsDom = document.getElementById("cvs");
+        var ctx = cvsDom.getContext("2d"); //返回一个上下文对象
+        // ctx.translate(250, 250);
+        // ctx.rotate(getRadian(90));//顺时针旋转90度
+        ctx.save(); //保存当前样式
+        ctx.beginPath(); //开启一个新路径
+        ctx.moveTo(100, 100);
+        ctx.lineTo(200, 100);
+        // ctx.lineTo(200, 200);
+        // ctx.closePath(); //将路径的当前点，连接到路径的起始点
+        ctx.strokeStyle = "#859"; //设置描边颜色
+        ctx.lineWidth = 10;//这些样式会影响到后面作画
+        ctx.lineCap = "square";
+        //阴影
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = "rgba(0,0,0,.5)";
+        ctx.shadowOffsetX = 0;
+        ctx.shadowOffsetY = 0;
+        ctx.stroke();//真正的开始画画
+        ctx.restore(); //恢复到之前的样式
+
+        ctx.beginPath(); //开启一个新路径
+        ctx.moveTo(100, 200);
+        ctx.lineTo(200, 200);
+        // ctx.lineTo(200, 200);
+        // ctx.closePath(); //将路径的当前点，连接到路径的起始点
+        ctx.strokeStyle = "#859"; //设置描边颜色
+        ctx.lineWidth = 10;
+        ctx.lineCap = "butt";
+        ctx.stroke();//真正的开始画画
+
+        ctx.beginPath(); 
+        ctx.arc(350, 350, 100, getRadian(0), getRadian(360));
+        // ctx.fillStyle = "darkblue";//设置填充颜色
+        ctx.stroke();
+        // ctx.fill();
+    </script>
+</body>
+
+</html>

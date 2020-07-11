@@ -1,0 +1,105 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    font-size: 0;
+}
+
+.wrapper {
+    position: relative;
+    width: 500px;
+    height: 350px;
+    margin: 150px auto;
+    border: 1px solid black;
+    /* text-align:center; */
+    /* overflow: hidden; */
+}
+
+.wrapper ul {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3000px;
+    height: 350px;
+}
+
+.wrapper ul li {
+    width: 500px;
+    height: 350px;
+    display: inline-block;
+}
+
+.wrapper ul li a img {
+    width: 500px;
+    height: 350px;
+}
+
+.left-btn {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin-top: -15px;
+    display: block;
+    background: #ccc;
+    width: 35px;
+    height: 30px;
+    text-align: center;
+    opacity: 0.8;
+    border-radius: 0 15px 15px 0;
+    display: none;
+}
+
+.right-btn {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    margin-top: -15px;
+    display: block;
+    background: #ccc;
+    width: 35px;
+    height: 30px;
+    text-align: center;
+    opacity: 0.8;
+    border-radius: 15px 0 0 15px;
+    display: none;
+}
+
+.right-btn img,
+.left-btn img {
+    width: 35px;
+    height: 30px;
+
+}
+
+.wrapper .order {
+    position: absolute;
+    top: 280px;
+    left: 50%;
+    margin-left: -50px;
+    width: 120px;
+    height: 20px;
+    /* border:1px solid black; */
+    /* background:#ccc; */
+    text-align: center;
+}
+
+.wrapper .order ul {
+    width: 100%;
+    height: 100%;
+
+}
+
+.wrapper .order ul li {
+    display: inline-block;
+    border-radius: 50%;
+    background: white;
+    height: 14px;
+    width: 14px;
+    margin: 3px 5px;
+    opacity: 0.8;
+}
+
+.wrapper .order ul .active {
+    background: red;
+}
